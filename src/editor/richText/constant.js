@@ -31,4 +31,5 @@ export const EditControl = [
   "separator",
   "separator",
   "clear",
+  'table'
 ];

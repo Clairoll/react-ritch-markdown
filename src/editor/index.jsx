@@ -1,3 +1,14 @@
+/*
+ * @Autor: Clairoll
+ * @Date: 2020-09-08 16:49:05
+ * @LastEditTime: 2020-09-08 16:54:23
+ * @Email: 1755033445@qq.com
+ * @param {String} lastValue 上一次草稿的值
+ * @param {String} defaultValue 默认值
+ * @param {String} isRitch 显示哪个编辑器
+ * @param {Function} getEditorValue 获取编辑器的值返回给父组件
+ * @description: 
+ */
 import React, { useState } from "react";
 import RichTexts from "./richText/index.jsx";
 import MarkDown from "./markdown/index.jsx";
@@ -19,9 +30,9 @@ const Editors = (props) => {
         </Button>
       </div>
       {isRitch ? (
-        <RichTexts getValue={getValue} />
+        <RichTexts getValue={getValue} defaultValue={props.defaultValue} lastValue={props.lastValue}/>
       ) : (
-        <MarkDown getValue={getValue} />
+        <MarkDown getValue={getValue} defaultValue={props.defaultValue} lastValue={props.lastValue}/>
       )}
     </div>
   );
