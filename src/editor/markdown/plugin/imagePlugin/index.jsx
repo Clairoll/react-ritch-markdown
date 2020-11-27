@@ -1,7 +1,7 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-27 14:58:04
- * @LastEditTime: 2020-08-27 17:23:28
+ * @LastEditTime: 2020-11-27 15:56:06
  * @Email: 1755033445@qq.com
  * @description: 基于react-markdown-editor-lite 的图片上传组件
  */
@@ -59,9 +59,15 @@ class Counter extends PluginComponent {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         // 插入Markdown
-        let str = `[![${values.desc}](${values.url} "${values.desc}")](${values.link} "${values.desc}")`;
+        let str;
+
+        if (values.link) {
+          str = `[![${values.desc}](${values.url} "${values.desc}")](${values.link} "${values.desc}")`;
+        } else {
+          str = `![${values.desc}](${values.url} "${values.desc}")`;
+        }
         this.editor.insertText(str);
-        this.setState({isShowModel:false})
+        this.setState({ isShowModel: false })
         this.props.form.resetFields();
       }
     });
