@@ -1,7 +1,7 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-27 14:58:04
- * @LastEditTime: 2020-12-23 14:46:56
+ * @LastEditTime: 2020-12-23 14:59:15
  * @Email: 1755033445@qq.com
  * @description: 基于react-markdown-editor-lite 的链接组件
  */
@@ -26,7 +26,6 @@ class Counter extends PluginComponent {
   }
 
   handleClick = () => {
-    console.log(99999)
     // 更新一下自身的state
     this.setState({
       isShowModel: true,
@@ -65,7 +64,6 @@ class Counter extends PluginComponent {
           visible={this.state.isShowModel}
           onCancel={() => this.handleCancel()}
           footer={null}
-          zIndex={9999}
         >
           <Form onFinish={this.handleSubmit} className="login-form">
             <Form.Item
