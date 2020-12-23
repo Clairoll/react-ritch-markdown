@@ -1,7 +1,7 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-27 14:58:04
- * @LastEditTime: 2020-12-23 14:40:48
+ * @LastEditTime: 2020-12-23 15:11:10
  * @Email: 1755033445@qq.com
  * @description: 基于react-markdown-editor-lite 的图片上传组件
  */
@@ -25,6 +25,8 @@ class Counter extends PluginComponent {
     };
   }
 
+  formRef = React.createRef();
+
   handleClick = () => {
     // 更新一下自身的state
     this.setState({
@@ -39,29 +41,22 @@ class Counter extends PluginComponent {
   //图片上传回调
   uploadChange = (info) => {
     if (info.file.status === "done") {
-      this.props.form.setFieldsValue({ url: info.file.response.url });
+      this.formRef.current.setFieldsValue({ url: info.file.response.url });
     } else if (info.file.status === "error") {
       message.error("图片上传失败");
     }
   };
 
-  handleSubmit = (value) => {
-    // e.preventDefault();
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     // 插入Markdown
-    //     let str;
-
-    //     if (values.link) {
-    //       str = `[![${values.desc}](${values.url} "${values.desc}")](${values.link} "${values.desc}")`;
-    //     } else {
-    //       str = `![${values.desc}](${values.url} "${values.desc}")`;
-    //     }
-    //     this.editor.insertText(str);
-    //     this.setState({ isShowModel: false });
-    //     this.props.form.resetFields();
-    //   }
-    // });
+  handleSubmit = (values) => {
+    let str;
+    if (values.link) {
+      str = `[![${values.desc}](${values.url} "${values.desc}")](${values.link} "${values.desc}")`;
+    } else {
+      str = `![${values.desc}](${values.url} "${values.desc}")`;
+    }
+    this.editor.insertText(str);
+    this.setState({ isShowModel: false });
+    this.formRef.current.resetFields();
   };
 
   render() {
@@ -81,6 +76,7 @@ class Counter extends PluginComponent {
           footer={null}
         >
           <Form
+            ref={this.formRef}
             onFinish={this.handleSubmit}
             className="login-form"
           >

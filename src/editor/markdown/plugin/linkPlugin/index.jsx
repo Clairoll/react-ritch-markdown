@@ -1,7 +1,7 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-27 14:58:04
- * @LastEditTime: 2020-12-23 14:59:15
+ * @LastEditTime: 2020-12-23 15:10:21
  * @Email: 1755033445@qq.com
  * @description: 基于react-markdown-editor-lite 的链接组件
  */
@@ -25,6 +25,8 @@ class Counter extends PluginComponent {
     };
   }
 
+  formRef = React.createRef();
+
   handleClick = () => {
     // 更新一下自身的state
     this.setState({
@@ -36,17 +38,12 @@ class Counter extends PluginComponent {
     this.setState({ isShowModel: false });
   };
 
-  handleSubmit = (value) => {
-    // e.preventDefault();
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     // 插入Markdown
-    //     let str = `[${values.desc}](${values.url} "${values.desc}")`;
-    //     this.editor.insertText(str);
-    //     this.setState({ isShowModel: false });
-    //     this.props.form.resetFields();
-    //   }
-    // });
+  handleSubmit = (values) => {
+    // 插入Markdown
+    let str = `[${values.desc}](${values.url} "${values.desc}")`;
+    this.editor.insertText(str);
+    this.setState({ isShowModel: false });
+    this.formRef.current.resetFields();
   };
 
   render() {
@@ -65,7 +62,11 @@ class Counter extends PluginComponent {
           onCancel={() => this.handleCancel()}
           footer={null}
         >
-          <Form onFinish={this.handleSubmit} className="login-form">
+          <Form
+            ref={this.formRef}
+            onFinish={this.handleSubmit}
+            className="login-form"
+          >
             <Form.Item
               label="链接地址"
               name="url"

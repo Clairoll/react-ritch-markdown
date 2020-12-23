@@ -1,7 +1,7 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-09-08 16:49:05
- * @LastEditTime: 2020-09-08 16:54:23
+ * @LastEditTime: 2020-12-23 15:05:45
  * @Email: 1755033445@qq.com
  * @param {String} lastValue 上一次草稿的值
  * @param {String} defaultValue 默认值
@@ -13,7 +13,9 @@ import React, { useState } from "react";
 import RichTexts from "./richText/index.jsx";
 import MarkDown from "./markdown/index.jsx";
 import { Button } from "antd";
+import 'antd/dist/antd.css';
 import "./index.less";
+
 
 const Editors = (props) => {
   const [isRitch, setIsRitch] = useState(true);
