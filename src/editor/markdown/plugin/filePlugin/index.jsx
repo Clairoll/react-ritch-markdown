@@ -1,13 +1,14 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-27 16:51:19
- * @LastEditTime: 2020-08-28 15:56:39
+ * @LastEditTime: 2020-12-23 14:07:05
  * @Email: 1755033445@qq.com
  * @description: 基于react-markdown-editor-lite 的文件上传组件
  */
 import React from "react";
 import { PluginComponent } from "react-markdown-editor-lite";
-import { Upload, Icon, message } from "antd";
+import { Upload, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 class Counter extends PluginComponent {
   // 这里定义插件名称，注意不能重复
@@ -33,7 +34,7 @@ class Counter extends PluginComponent {
           onChange={(info) => this.uploadChange(info)}
           name="0"
         >
-          <Icon type="upload" />
+          <UploadOutlined />
         </Upload>
       </span>
     );

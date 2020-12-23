@@ -1,13 +1,14 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-25 15:17:35
- * @LastEditTime: 2020-09-08 16:53:32
+ * @LastEditTime: 2020-12-23 14:05:06
  * @Email: 1755033445@qq.com
  * @description: 富文本编辑器
  */
 import React, { useState, useMemo, useEffect } from "react";
-import { Upload, message, Icon } from "antd";
+import { Upload, message } from "antd";
 import BraftEditor from "braft-editor";
+import { FolderAddOutlined, PictureOutlined } from "@ant-design/icons";
 import { ContentUtils } from "braft-utils";
 import { EditControl } from "./constant";
 import Table from "braft-extensions/dist/table";
@@ -79,7 +80,7 @@ const RichTexts = (props) => {
             className="control-item button upload-button"
             data-title="插入图片"
           >
-            <Icon type="picture" />
+            <PictureOutlined />
           </button>
         </Upload>
       ),
@@ -100,7 +101,7 @@ const RichTexts = (props) => {
             className="control-item button upload-button"
             data-title="上传文件"
           >
-            <Icon type="folder-add" />
+            <FolderAddOutlined />
           </button>
         </Upload>
       ),

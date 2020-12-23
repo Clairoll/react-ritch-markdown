@@ -1,13 +1,14 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-27 14:58:04
- * @LastEditTime: 2020-08-27 17:35:19
+ * @LastEditTime: 2020-12-23 14:46:56
  * @Email: 1755033445@qq.com
  * @description: 基于react-markdown-editor-lite 的链接组件
  */
 import React from "react";
 import { PluginComponent } from "react-markdown-editor-lite";
-import { Icon, Modal, Button, Form, Input } from "antd";
+import { Modal, Button, Form, Input } from "antd";
+import { LinkOutlined } from "@ant-design/icons";
 
 import "./index.less";
 
@@ -25,6 +26,7 @@ class Counter extends PluginComponent {
   }
 
   handleClick = () => {
+    console.log(99999)
     // 更新一下自身的state
     this.setState({
       isShowModel: true,
@@ -35,21 +37,20 @@ class Counter extends PluginComponent {
     this.setState({ isShowModel: false });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        // 插入Markdown
-        let str = `[${values.desc}](${values.url} "${values.desc}")`;
-        this.editor.insertText(str);
-        this.setState({ isShowModel: false });
-        this.props.form.resetFields();
-      }
-    });
+  handleSubmit = (value) => {
+    // e.preventDefault();
+    // this.props.form.validateFields((err, values) => {
+    //   if (!err) {
+    //     // 插入Markdown
+    //     let str = `[${values.desc}](${values.url} "${values.desc}")`;
+    //     this.editor.insertText(str);
+    //     this.setState({ isShowModel: false });
+    //     this.props.form.resetFields();
+    //   }
+    // });
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     return (
       <>
         <span
@@ -57,32 +58,32 @@ class Counter extends PluginComponent {
           title="插入链接"
           onClick={() => this.handleClick()}
         >
-          <Icon type="link" />
+          <LinkOutlined />
         </span>
         <Modal
           title="添加链接"
           visible={this.state.isShowModel}
           onCancel={() => this.handleCancel()}
           footer={null}
+          zIndex={9999}
         >
-          <Form
-            labelCol={{ xs: { span: 24 }, sm: { span: 4 } }}
-            wrapperCol={{ xs: { span: 24 }, sm: { span: 20 } }}
-            onSubmit={this.handleSubmit}
-            className="login-form"
-          >
-            <Form.Item label="链接地址">
-              {getFieldDecorator("url", {
-                rules: [{ required: true, message: "请输入链接地址!" }],
-              })(<Input size="large" placeholder="请输入链接地址" />)}
+          <Form onFinish={this.handleSubmit} className="login-form">
+            <Form.Item
+              label="链接地址"
+              name="url"
+              rules={[{ required: true, message: "请输入链接地址!" }]}
+            >
+              <Input size="large" placeholder="请输入链接地址" />
             </Form.Item>
-            <Form.Item label="链接标题">
-              {getFieldDecorator("desc", {
-                rules: [{ required: true, message: "请输入链接标题!" }],
-              })(<Input size="large" placeholder="请输入链接标题" />)}
+            <Form.Item
+              label="链接标题"
+              name="desc"
+              rules={[{ required: true, message: "请输入链接标题!" }]}
+            >
+              <Input size="large" placeholder="请输入链接标题" />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ xs: { span: 24 }, sm: { span: 24 } }}>
+            <Form.Item>
               <div className="footer">
                 <Button size="large" htmlType="submit">
                   确定
@@ -98,5 +99,4 @@ class Counter extends PluginComponent {
     );
   }
 }
-const Counters = Form.create()(Counter);
-export default Counters;
+export default Counter;
