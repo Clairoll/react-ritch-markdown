@@ -1,40 +1,52 @@
 {
-  "name": "ritch",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-ritch-markdown",
+  "version": "1.0.0",
+  "description": "一个基于antd的同时支持markdown和ritch的编辑器",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config config/webpack.dev.config.js",
+    "build": "webpack --config config/webpack.prod.config.js",
+    "pub": "npm run build && npm publish"
+  },
+  "keywords": [
+    "react",
+    "markdown",
+    "ritch"
+  ],
+  "author": "clairoll",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-import": "^1.13.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "less": "^4.0.0",
+    "less-loader": "^7.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@liradb2000/markdown-it-mermaid": "^0.4.1",
     "antd": "^4.9.4",
+    "axios": "^0.21.1",
     "braft-editor": "^2.3.9",
     "braft-extensions": "^0.1.0",
+    "highlight.js": "^10.5.0",
     "markdown-it": "^11.0.0",
     "markdown-it-toc": "^1.1.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-markdown-editor-lite": "^1.2.2",
-    "react-scripts": "^4.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react-markdown-editor-lite": "^1.2.2"
   }
 }

@@ -1,16 +1,22 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-08-25 15:17:35
- * @LastEditTime: 2020-12-23 14:05:06
+ * @LastEditTime: 2020-12-25 14:38:15
  * @Email: 1755033445@qq.com
  * @description: 富文本编辑器
  */
-import React, { useState, useMemo, useEffect } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { Upload, message } from "antd";
 import BraftEditor from "braft-editor";
-import { FolderAddOutlined, PictureOutlined } from "@ant-design/icons";
 import { ContentUtils } from "braft-utils";
-import { EditControl } from "./constant";
+import { FolderAddOutlined, PictureOutlined } from "@ant-design/icons";
+import Axios from "axios";
 import Table from "braft-extensions/dist/table";
 import "braft-editor/dist/index.css";
 import "braft-extensions/dist/table.css";
@@ -25,7 +31,7 @@ const options = {
   exportAttrString: 'border="1" style="border-collapse: collapse"', // 指定输出HTML时附加到table标签上的属性字符串
 };
 
-const RichTexts = (props) => {
+const RichTexts = forwardRef((props, ref) => {
   const [editorState, setEditorState] = useState(
     BraftEditor.createEditorState(null)
   );
@@ -35,7 +41,7 @@ const RichTexts = (props) => {
     if (info.file.status === "done") {
       // 富文本图片上传成功，将图片地址加入富文本内容
       let data = ContentUtils.insertMedias(editorState, [
-        { type: "IMAGE", url: info.file.response.url },
+        { type: "IMAGE", url: info.file.response.data.url },
       ]);
       setEditorState(data);
       // 回调给父组件
@@ -73,6 +79,9 @@ const RichTexts = (props) => {
           onChange={(info) => uploadImageChange(info, editorState)}
           showUploadList={false}
           name="0"
+          data={{
+            name: "0",
+          }}
         >
           {/* 这里的按钮最好加上type="button"，以避免在表单容器中触发表单提交，用Antd的Button组件则无需如此 */}
           <button
@@ -108,6 +117,12 @@ const RichTexts = (props) => {
     },
   ];
 
+  useImperativeHandle(ref, () => ({
+    clearContent: () => {
+      setEditorState(ContentUtils.clear(editorState));
+    },
+  }));
+
   useMemo(() => {
     //  恢复到上次草稿
     if (props.lastValue) {
@@ -121,19 +136,51 @@ const RichTexts = (props) => {
   useEffect(() => {
     BraftEditor.use(Table(options));
   }, []);
+
+  // 粘贴图片上传
+  const myUploadFn = (param) => {
+    let obj = new FormData();
+    obj.append("name", param.file.name);
+    obj.append("0", param.file);
+    Axios.post("/api/site/image", obj)
+      .then((res) => {
+        if (res.data && res.data.code == 0) {
+          let data = res.data.data;
+          param.success({
+            url: data.url,
+            meta: {
+              id: data.id,
+              title: data.name,
+              alt: data.name,
+            },
+          });
+        }
+        console.log(res);
+      })
+      .catch((err) => {
+        param.error({
+          msg: "上传失败!",
+        });
+      });
+  };
+
   return (
     <div id="myRitch">
       <BraftEditor
         value={editorState}
-        controls={[...EditControl, Table]}
+        // 配置，不支持粘贴图片
+        // controls={[...EditControl, Table]}
         onChange={(editorState) => {
           setEditorState(editorState);
           props.getValue(editorState.toHTML());
+        }}
+        media={{
+          uploadFn: myUploadFn,
         }}
         id="editor-id"
         extendControls={extendControls}
       />
     </div>
   );
-};
+});
 export default RichTexts;
