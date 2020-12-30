@@ -1,6 +1,6 @@
 {
   "name": "react-ritch-markdown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "一个基于antd的同时支持markdown和ritch的编辑器",
   "main": "lib/index.js",
   "scripts": {

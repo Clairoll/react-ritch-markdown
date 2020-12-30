@@ -1,32 +1,57 @@
 /*
  * @Autor: Clairoll
  * @Date: 2020-12-24 14:06:00
- * @LastEditTime: 2020-12-25 15:16:53
+ * @LastEditTime: 2020-12-30 15:24:15
  * @Email: 1755033445@qq.com
  * @description: 
  */
 import React from 'react'
 import { render } from 'react-dom'
-import Editors from '../../components' // 引入组件
+import { Editors } from '../../components' // 引入组件
+import { Button } from "antd";
 
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            defaultValue: '',
+        }
     }
 
-    getEditorValue = (value) => {
+    onChange = (value) => {
         console.log(value)
     }
 
     refadd = React.createRef();
 
     componentDidMount() {
-        console.log(this.refadd.current)
+        this.setState({ defaultValue: '1236' })
+    }
+
+    handleClickLastValue = async () => {
+        this.setState({ defaultValue: '7896' })
+    }
+
+    handleClear = () => {
+        this.refadd.current.clearContent()
     }
 
     render() {
-        return <Editors markUrl="/api/site/markdown_image" ref={this.refadd} isButton={true} getEditorValue={this.getEditorValue}/>
+        const { defaultValue } = this.state
+        return <div>
+            <Button onClick={() => this.handleClickLastValue()}>
+                恢复上一次内容
+            </Button>
+            <Button onClick={() => this.handleClear()}>
+                清除内容
+            </Button>
+            <Editors
+                ref={this.refadd}
+                onChange={this.onChange}
+                isRitch={true}
+                defaultValue={defaultValue}
+            />
+        </div>
     }
 }
 
