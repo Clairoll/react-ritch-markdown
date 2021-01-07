@@ -1,0 +1,6 @@
+/* 隐藏mermaid error */
+
+div[id^="drender"] {
+  position: absolute;
+  left: -100%;
+}

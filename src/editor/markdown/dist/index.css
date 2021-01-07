@@ -1,0 +1,73 @@
+.rc-md-navigation .button-wrap .button-type-image {
+  display: none;
+}
+.rc-md-navigation .button-wrap .button-type-link {
+  display: none;
+}
+.sec-html .mermaid svg {
+  max-width: 100% !important;
+}
+.sec-html h1 {
+  font-size: 32px;
+  padding: 0;
+  border: none;
+  font-weight: 700;
+  margin: 32px 0;
+  line-height: 1.2;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+}
+.sec-html h2 {
+  font-size: 24px;
+  padding: 0 0;
+  border: none;
+  font-weight: 700;
+  margin: 24px 0;
+  line-height: 1.7;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.sec-html h3 {
+  font-size: 18px;
+  margin: 18px 0;
+  padding: 0 0;
+  line-height: 1.7;
+  border: none;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.sec-html h4 {
+  display: block;
+  font-size: 1em;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.sec-html h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.sec-html h6 {
+  display: block;
+  font-size: 0.67em;
+  margin-block-start: 2.33em;
+  margin-block-end: 2.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}

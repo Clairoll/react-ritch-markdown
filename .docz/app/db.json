@@ -1,0 +1,88 @@
+{
+  "config": {
+    "title": "React Ritch Markdown",
+    "description": "My awesome app using docz",
+    "menu": [],
+    "version": "2.0.0",
+    "repository": false,
+    "native": false,
+    "codeSandbox": true,
+    "themeConfig": {},
+    "separator": "-",
+    "typescript": false,
+    "theme": "D:/web/react-ritch-markdown/node_modules/docz-theme-umi/es/index.js",
+    "plugins": [
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "props": [],
+  "entries": [
+    {
+      "key": "src/editor/index.mdx",
+      "value": {
+        "name": "Editors",
+        "route": "/",
+        "id": "079fe5dc0cf8931629deba290326d16c",
+        "filepath": "src/editor/index.mdx",
+        "link": "",
+        "slug": "src-editor-index",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "editors",
+            "depth": 1,
+            "value": "Editors"
+          },
+          {
+            "slug": "支持参数",
+            "depth": 2,
+            "value": "支持参数"
+          },
+          {
+            "slug": "支持方法",
+            "depth": 2,
+            "value": "支持方法"
+          },
+          {
+            "slug": "onchange实例",
+            "depth": 3,
+            "value": "onChange实例"
+          },
+          {
+            "slug": "基本使用示例",
+            "depth": 2,
+            "value": "基本使用示例"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/showEditor/index.mdx",
+      "value": {
+        "name": "ShowEditors",
+        "route": "/ShowEditors",
+        "id": "60945dd26e79e8ea2b1e49dfac0d728c",
+        "filepath": "src/showEditor/index.mdx",
+        "link": "",
+        "slug": "src-show-editor-index",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "showeditors",
+            "depth": 1,
+            "value": "ShowEditors"
+          },
+          {
+            "slug": "normal-showeditors",
+            "depth": 2,
+            "value": "Normal ShowEditors"
+          }
+        ]
+      }
+    }
+  ]
+}
